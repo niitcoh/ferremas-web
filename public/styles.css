@@ -1,0 +1,65 @@
+/* Estilos generales */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Carousel */
+.carousel-item img {
+  height: 400px;
+  object-fit: cover;
+}
+
+.carousel-caption {
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 20px;
+  border-radius: 5px;
+}
+
+/* Cards */
+.card {
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.card-img-top {
+  height: 200px;
+  object-fit: cover;
+}
+
+/* Badge para el carrito */
+#cart-link {
+  position: relative;
+}
+
+#cart-badge {
+  font-size: 0.6rem;
+}
+
+/* Página de perfil */
+.nav-pills .nav-link.active {
+  background-color: #0d6efd;
+}
+
+.tab-pane {
+  padding-top: 1rem;
+}
+
+/* Direcciones */
+.card.border-primary {
+  border-width: 2px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .carousel-item img {
+    height: 250px;
+  }
+  
+  .card-img-top {
+    height: 180px;
+  }
+}

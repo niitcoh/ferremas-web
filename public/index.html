@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FERREMAS | Ferretería y Materiales</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <!-- Barra superior -->
+  <div class="bg-dark text-white py-2">
+    <div class="container d-flex justify-content-between align-items-center">
+      <small>Envío gratuito en compras sobre $50.000</small>
+      <div>
+        <small class="me-3">
+          <i class="fas fa-home me-1"></i>
+          Santiago, Chile
+        </small>
+        <small>
+          <i class="fas fa-phone me-1"></i>+56 2 2345 6789
+        </small>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary py-3">
+    <div class="container">
+      <a class="navbar-brand" href="/">
+        <img src="https://placehold.co/150x50/primary/white?text=FERREMAS" alt="FERREMAS" height="40">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item">
+            <a class="nav-link mx-2 active" href="/">Inicio</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle mx-2" href="#" role="button" data-bs-toggle="dropdown">
+              Categorías
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="/categoria/herramientas">Herramientas</a></li>
+              <li><a class="dropdown-item" href="/categoria/materiales">Materiales de Construcción</a></li>
+              <li><a class="dropdown-item" href="/categoria/seguridad">Equipos de Seguridad</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="/productos">Ver todos los productos</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link mx-2" href="/ofertas">Ofertas</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link mx-2" href="/contacto">Contacto</a>
+          </li>
+        </ul>
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link mx-2" href="/carrito" id="cart-link">
+              <i class="fas fa-shopping-cart me-1"></i> Carrito
+            </a>
+          </li>
+          <li class="nav-item" id="login-item">
+            <a class="nav-link mx-2" href="/login">
+              <i class="fas fa-user me-1"></i> Iniciar Sesión
+            </a>
+          </li>
+          <li class="nav-item dropdown d-none" id="user-dropdown">
+            <a class="nav-link dropdown-toggle mx-2" href="#" role="button" data-bs-toggle="dropdown">
+              <i class="fas fa-user-circle me-1"></i> <span id="user-name">Usuario</span>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li><a class="dropdown-item" href="/profile">Mi Perfil</a></li>
+              <li><a class="dropdown-item" href="/profile#pedidos">Mis Pedidos</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item text-danger" href="#" id="logout-link">Cerrar Sesión</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Contenido principal -->
+  <main>
+    <!-- Carrusel -->
+    <div id="mainCarousel" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="https://placehold.co/1200x400/222/white?text=Ofertas+Especiales" class="d-block w-100" alt="Ofertas Especiales">
+          <div class="carousel-caption">
+            <h3>Ofertas Especiales</h3>
+            <p>Descuentos de hasta 40% en herramientas seleccionadas</p>
+            <a href="/ofertas" class="btn btn-primary">Ver Ofertas</a>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img src="https://placehold.co/1200x400/222/white?text=Nuevos+Productos" class="d-block w-100" alt="Nuevos Productos">
+          <div class="carousel-caption">
+            <h3>Nuevos Productos</h3>
+            <p>Conoce nuestras últimas novedades en artículos de ferretería</p>
+            <a href="/productos" class="btn btn-primary">Ver Productos</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container py-5">
+      <!-- Categorías -->
+      <h2 class="text-center mb-4">Categorías Principales</h2>
+      <div class="row g-4 mb-5">
+        <div class="col-md-4">
+          <div class="card h-100 text-center">
+            <img src="https://placehold.co/300x200/007bff/white?text=Herramientas" class="card-img-top" alt="Herramientas">
+            <div class="card-body">
+              <h5 class="card-title">Herramientas</h5>
+              <p class="card-text">Encuentra las mejores herramientas manuales y eléctricas para tus proyectos.</p>
+              <a href="/categoria/herramientas" class="btn btn-primary">Ver Categoría</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card h-100 text-center">
+            <img src="https://placehold.co/300x200/007bff/white?text=Materiales" class="card-img-top" alt="Materiales">
+            <div class="card-body">
+              <h5 class="card-title">Materiales de Construcción</h5>
+              <p class="card-text">Todo lo que necesitas para tus proyectos de construcción y remodelación.</p>
+              <a href="/categoria/materiales" class="btn btn-primary">Ver Categoría</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card h-100 text-center">
+            <img src="https://placehold.co/300x200/007bff/white?text=Seguridad" class="card-img-top" alt="Seguridad">
+            <div class="card-body">
+              <h5 class="card-title">Equipos de Seguridad</h5>
+              <p class="card-text">Protégete con nuestra línea de equipos de seguridad de alta calidad.</p>
+              <a href="/categoria/seguridad" class="btn btn-primary">Ver Categoría</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Productos Destacados -->
+      <h2 class="text-center mb-4">Productos Destacados</h2>
+      <div class="row g-4 mb-5">
+        <!-- Producto 1 -->
+        <div class="col-md-3">
+          <div class="card h-100">
+            <img src="https://placehold.co/300x200/007bff/white?text=Taladro+Bosch" class="card-img-top" alt="Taladro Bosch">
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title">Taladro Percutor Bosch</h5>
+              <p class="card-text text-danger fw-bold">$89.990</p>
+              <div class="mt-auto d-grid gap-2">
+                <a href="/producto/1" class="btn btn-outline-primary">Ver Detalles</a>
+                <button class="btn btn-primary">Agregar al Carrito</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Producto 2 -->
+        <div class="col-md-3">
+          <div class="card h-100">
+            <img src="https://placehold.co/300x200/007bff/white?text=Destornilladores+Stanley" class="card-img-top" alt="Destornilladores Stanley">
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title">Set Destornilladores Stanley</h5>
+              <p class="card-text text-danger fw-bold">$24.990</p>
+              <div class="mt-auto d-grid gap-2">
+                <a href="/producto/2" class="btn btn-outline-primary">Ver Detalles</a>
+                <button class="btn btn-primary">Agregar al Carrito</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Producto 3 -->
+        <div class="col-md-3">
+          <div class="card h-100">
+            <img src="https://placehold.co/300x200/007bff/white?text=Cemento+Polpaico" class="card-img-top" alt="Cemento Polpaico">
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title">Cemento Polpaico 25kg</h5>
+              <p class="card-text text-danger fw-bold">$8.990</p>
+              <div class="mt-auto d-grid gap-2">
+                <a href="/producto/3" class="btn btn-outline-primary">Ver Detalles</a>
+                <button class="btn btn-primary">Agregar al Carrito</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Producto 4 -->
+        <div class="col-md-3">
+          <div class="card h-100">
+            <img src="https://placehold.co/300x200/007bff/white?text=Casco+3M" class="card-img-top" alt="Casco 3M">
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title">Casco de Seguridad 3M</h5>
+              <p class="card-text text-danger fw-bold">$12.990</p>
+              <div class="mt-auto d-grid gap-2">
+                <a href="/producto/4" class="btn btn-outline-primary">Ver Detalles</a>
+                <button class="btn btn-primary">Agregar al Carrito</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Beneficios -->
+      <h2 class="text-center mb-4">¿Por qué elegirnos?</h2>
+      <div class="row g-4 mb-5 text-center">
+        <div class="col-md-3">
+          <div class="p-3">
+            <img src="https://placehold.co/100/007bff/white?text=Envío" alt="Envío" class="mb-3" width="100" height="100">
+            <h5>Envío Rápido</h5>
+            <p>Entrega en todo Chile</p>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="p-3">
+            <img src="https://placehold.co/100/007bff/white?text=Calidad" alt="Calidad" class="mb-3" width="100" height="100">
+            <h5>Productos de Calidad</h5>
+            <p>Las mejores marcas</p>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="p-3">
+            <img src="https://placehold.co/100/007bff/white?text=Atención" alt="Atención" class="mb-3" width="100" height="100">
+            <h5>Atención Personalizada</h5>
+            <p>Asesores especializados</p>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="p-3">
+            <img src="https://placehold.co/100/007bff/white?text=Seguridad" alt="Seguridad" class="mb-3" width="100" height="100">
+            <h5>Compra Segura</h5>
+            <p>Pagos protegidos</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-dark text-light py-4 mt-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 mb-4 mb-md-0">
+          <h5>FERREMAS</h5>
+          <p class="text-muted">
+            Empresa chilena de productos de ferretería y construcción, 
+            establecida desde la década de los 80 con más de 7 sucursales 
+            en todo el país.
+          </p>
+        </div>
+        <div class="col-md-3 mb-4 mb-md-0">
+          <h5>Enlaces Rápidos</h5>
+          <ul class="list-unstyled">
+            <li><a href="/" class="text-muted">Inicio</a></li>
+            <li><a href="/productos" class="text-muted">Productos</a></li>
+            <li><a href="/ofertas" class="text-muted">Ofertas</a></li>
+            <li><a href="/contacto" class="text-muted">Contacto</a></li>
+          </ul>
+        </div>
+        <div class="col-md-3 mb-4 mb-md-0">
+          <h5>Categorías</h5>
+          <ul class="list-unstyled">
+            <li><a href="/categoria/herramientas" class="text-muted">Herramientas</a></li>
+            <li><a href="/categoria/materiales" class="text-muted">Materiales</a></li>
+            <li><a href="/categoria/seguridad" class="text-muted">Seguridad</a></li>
+            <li><a href="/categoria/accesorios" class="text-muted">Accesorios</a></li>
+          </ul>
+        </div>
+        <div class="col-md-2">
+          <h5>Contacto</h5>
+          <ul class="list-unstyled">
+            <li class="mb-2">
+              <i class="fas fa-map-marker-alt me-2"></i>
+              <span class="text-muted">Santiago, Chile</span>
+            </li>
+            <li class="mb-2">
+              <i class="fas fa-phone me-2"></i>
+              <span class="text-muted">+56 2 2345 6789</span>
+            </li>
+            <li>
+              <i class="fas fa-envelope me-2"></i>
+              <span class="text-muted">contacto@ferremas.cl</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <hr class="my-4 bg-secondary">
+      <div class="row">
+        <div class="col text-center text-muted">
+          <p class="mb-0">© 2025 FERREMAS. Todos los derechos reservados.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts de Bootstrap y FontAwesome -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="/js/auth.js"></script>
+  <script src="/script.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Verificar si hay usuario logueado
+      if (estaAutenticado()) {
+        const usuario = getUsuarioActual();
+        
+        // Actualizar nombre de usuario
+        document.getElementById('user-name').textContent = usuario.nombre;
+        
+        // Mostrar dropdown de usuario y ocultar enlace de login
+        document.getElementById('login-item').classList.add('d-none');
+        document.getElementById('user-dropdown').classList.remove('d-none');
+        
+        // Configurar evento de logout
+        document.getElementById('logout-link').addEventListener('click', function(e) {
+          e.preventDefault();
+          cerrarSesion();
+        });
+      }
+    });
+  </script>
+</body>
+</html>
