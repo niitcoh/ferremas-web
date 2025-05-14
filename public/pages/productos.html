@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FERREMAS | Ferretería y Materiales</title>
+  <title>Productos | FERREMAS</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   <link rel="stylesheet" href="/styles.css">
@@ -37,16 +37,16 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav me-auto">
           <li class="nav-item">
-            <a class="nav-link mx-2 active" href="/">Inicio</a>
+            <a class="nav-link mx-2" href="/">Inicio</a>
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle mx-2" href="#" role="button" data-bs-toggle="dropdown">
+            <a class="nav-link dropdown-toggle mx-2 active" href="#" role="button" data-bs-toggle="dropdown">
               Categorías
             </a>
             <ul class="dropdown-menu" id="categorias-menu">
               <!-- Las categorías se cargarán dinámicamente aquí -->
               <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="/productos">Ver todos los productos</a></li>
+              <li><a class="dropdown-item active" href="/productos">Ver todos los productos</a></li>
             </ul>
           </li>
           <li class="nav-item">
@@ -84,80 +84,51 @@
   </nav>
 
   <!-- Contenido principal -->
-  <main>
-    <!-- Carrusel -->
-    <div id="mainCarousel" class="carousel slide" data-bs-ride="carousel">
-      <div class="carousel-inner">
-        <div class="carousel-item active">
-          <img src="https://placehold.co/1200x400/222/white?text=Ofertas+Especiales" class="d-block w-100" alt="Ofertas Especiales">
-          <div class="carousel-caption">
-            <h3>Ofertas Especiales</h3>
-            <p>Descuentos de hasta 40% en herramientas seleccionadas</p>
-            <a href="/ofertas" class="btn btn-primary">Ver Ofertas</a>
-          </div>
-        </div>
-        <div class="carousel-item">
-          <img src="https://placehold.co/1200x400/222/white?text=Nuevos+Productos" class="d-block w-100" alt="Nuevos Productos">
-          <div class="carousel-caption">
-            <h3>Nuevos Productos</h3>
-            <p>Conoce nuestras últimas novedades en artículos de ferretería</p>
-            <a href="/productos" class="btn btn-primary">Ver Productos</a>
-          </div>
+  <div class="container my-5">
+    <h1 class="mb-4">Todos los Productos</h1>
+    
+    <!-- Filtros y ordenamiento -->
+    <div class="row mb-4">
+      <div class="col-md-6">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Buscar productos..." id="search-input">
+          <button class="btn btn-primary" type="button" id="search-button">
+            <i class="fas fa-search"></i>
+          </button>
         </div>
       </div>
-    </div>
-
-    <div class="container py-5">
-      <!-- Categorías -->
-      <section id="categorias-principales">
-        <h2 class="text-center mb-4">Categorías Principales</h2>
-        <div class="row g-4 mb-5">
-          <!-- Las categorías se cargarán dinámicamente aquí -->
-        </div>
-      </section>
-
-      <!-- Productos Destacados -->
-      <section id="productos-destacados">
-        <h2 class="text-center mb-4">Productos Destacados</h2>
-        <div class="row g-4 mb-5">
-          <!-- Los productos destacados se cargarán dinámicamente aquí -->
-        </div>
-      </section>
-
-      <!-- Beneficios -->
-      <h2 class="text-center mb-4">¿Por qué elegirnos?</h2>
-      <div class="row g-4 mb-5 text-center">
-        <div class="col-md-3">
-          <div class="p-3">
-            <img src="https://placehold.co/100/007bff/white?text=Envío" alt="Envío" class="mb-3" width="100" height="100">
-            <h5>Envío Rápido</h5>
-            <p>Entrega en todo Chile</p>
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div class="p-3">
-            <img src="https://placehold.co/100/007bff/white?text=Calidad" alt="Calidad" class="mb-3" width="100" height="100">
-            <h5>Productos de Calidad</h5>
-            <p>Las mejores marcas</p>
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div class="p-3">
-            <img src="https://placehold.co/100/007bff/white?text=Atención" alt="Atención" class="mb-3" width="100" height="100">
-            <h5>Atención Personalizada</h5>
-            <p>Asesores especializados</p>
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div class="p-3">
-            <img src="https://placehold.co/100/007bff/white?text=Seguridad" alt="Seguridad" class="mb-3" width="100" height="100">
-            <h5>Compra Segura</h5>
-            <p>Pagos protegidos</p>
-          </div>
-        </div>
+      <div class="col-md-6 text-md-end mt-3 mt-md-0">
+        <select class="form-select d-inline-block w-auto" id="sort-select">
+          <option value="default">Ordenar por</option>
+          <option value="price_asc">Precio: Menor a Mayor</option>
+          <option value="price_desc">Precio: Mayor a Menor</option>
+          <option value="name_asc">Nombre: A-Z</option>
+          <option value="name_desc">Nombre: Z-A</option>
+        </select>
       </div>
     </div>
-  </main>
+    
+    <!-- Grid de productos -->
+    <div class="row g-4" id="productos-container">
+      <!-- Los productos se cargarán dinámicamente aquí -->
+      <div class="col-12 text-center py-5" id="loading">
+        <div class="spinner-border text-primary" role="status">
+          <span class="visually-hidden">Cargando...</span>
+        </div>
+        <p class="mt-2">Cargando productos...</p>
+      </div>
+      <div class="col-12 text-center py-5 d-none" id="no-products">
+        <p class="text-muted">No se encontraron productos</p>
+      </div>
+    </div>
+    
+    <!-- Paginación -->
+    <nav aria-label="Paginación de productos" class="mt-5">
+      <ul class="pagination justify-content-center" id="pagination">
+        <!-- La paginación se generará dinámicamente -->
+      </ul>
+    </nav>
+  </div>
 
   <!-- Footer -->
   <footer class="bg-dark text-light py-4 mt-5">
@@ -217,7 +188,6 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script src="/js/auth.js"></script>
   <script src="/js/productos.js"></script>
-  <script src="/script.js"></script>
-  <script src="/js/home.js"></script>
+  <script src="/js/productos-page.js"></script>
 </body>
 </html>
