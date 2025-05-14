@@ -1,0 +1,276 @@
+<!-- public/producto/index.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detalle de Producto | FERREMAS</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <!-- Barra superior -->
+  <div class="bg-dark text-white py-2">
+    <div class="container d-flex justify-content-between align-items-center">
+      <small>Envío gratuito en compras sobre $50.000</small>
+      <div>
+        <small class="me-3">
+          <i class="fas fa-home me-1"></i>
+          Santiago, Chile
+        </small>
+        <small>
+          <i class="fas fa-phone me-1"></i>+56 2 2345 6789
+        </small>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary py-3">
+    <div class="container">
+      <a class="navbar-brand" href="/">
+        <img src="https://placehold.co/150x50/primary/white?text=FERREMAS" alt="FERREMAS" height="40">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item">
+            <a class="nav-link mx-2" href="/">Inicio</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle mx-2 active" href="#" role="button" data-bs-toggle="dropdown">
+              Categorías
+            </a>
+            <ul class="dropdown-menu" id="categorias-menu">
+              <!-- Las categorías se cargarán dinámicamente aquí -->
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="/productos">Ver todos los productos</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link mx-2" href="/ofertas">Ofertas</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link mx-2" href="/contacto">Contacto</a>
+          </li>
+        </ul>
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link mx-2" href="/carrito" id="cart-link">
+              <i class="fas fa-shopping-cart me-1"></i> Carrito
+              <span id="cart-counter" class="badge bg-danger rounded-pill d-none">0</span>
+            </a>
+          </li>
+          <li class="nav-item" id="login-item">
+            <a class="nav-link mx-2" href="/login">
+              <i class="fas fa-user me-1"></i> Iniciar Sesión
+            </a>
+          </li>
+          <li class="nav-item dropdown d-none" id="user-dropdown">
+            <a class="nav-link dropdown-toggle mx-2" href="#" role="button" data-bs-toggle="dropdown">
+              <i class="fas fa-user-circle me-1"></i> <span id="user-name">Usuario</span>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li><a class="dropdown-item" href="/profile">Mi Perfil</a></li>
+              <li><a class="dropdown-item" href="/profile#pedidos">Mis Pedidos</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item text-danger" href="#" id="logout-link">Cerrar Sesión</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Contenido principal - Detalle del producto -->
+  <div class="container my-5">
+    <nav aria-label="breadcrumb" class="mb-4">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Inicio</a></li>
+        <li class="breadcrumb-item"><a href="/productos">Productos</a></li>
+        <li class="breadcrumb-item active" id="breadcrumb-categoria">Categoría</li>
+        <li class="breadcrumb-item active" aria-current="page" id="breadcrumb-producto">Producto</li>
+      </ol>
+    </nav>
+
+    <!-- Pantalla de carga -->
+    <div id="loading" class="text-center py-5">
+      <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Cargando...</span>
+      </div>
+      <p class="mt-2">Cargando información del producto...</p>
+    </div>
+
+    <!-- Mensaje de error -->
+    <div id="error-message" class="alert alert-danger d-none" role="alert">
+      No se pudo cargar el producto. Inténtelo nuevamente o vuelva a la página de productos.
+    </div>
+
+    <!-- Detalle del producto -->
+    <div id="producto-detalle" class="row d-none">
+      <!-- Columna de imágenes -->
+      <div class="col-md-6 mb-4">
+        <div class="card">
+          <div class="card-body p-0">
+            <img id="producto-imagen-principal" src="/img/placeholder.jpg" alt="Producto" class="img-fluid rounded-top" style="object-fit: contain; width: 100%; height: 400px;">
+            
+            <!-- Miniaturas de imágenes adicionales -->
+            <div id="producto-miniaturas" class="d-flex mt-2 p-2 overflow-auto">
+              <!-- Se llenarán dinámicamente -->
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Columna de información -->
+      <div class="col-md-6">
+        <h1 id="producto-nombre" class="h2 mb-2">Nombre del Producto</h1>
+        
+        <!-- Badges -->
+        <div class="mb-3">
+          <span id="badge-nuevo" class="badge bg-success d-none me-2">Nuevo</span>
+          <span id="badge-destacado" class="badge bg-primary d-none me-2">Destacado</span>
+          <span id="badge-disponible" class="badge bg-success me-2">En stock</span>
+          <span id="badge-codigo" class="badge bg-secondary">Código: <span id="producto-codigo">XXX</span></span>
+        </div>
+        
+        <!-- Precio -->
+        <div class="mb-4">
+          <div id="producto-precio-normal" class="fs-3 fw-bold text-primary mb-1">$0</div>
+          <div id="producto-precio-oferta-container" class="d-none">
+            <div class="text-decoration-line-through text-muted">$0</div>
+            <div id="producto-precio-oferta" class="fs-3 fw-bold text-danger">$0</div>
+          </div>
+        </div>
+        
+        <!-- Descripción -->
+        <div class="mb-4">
+          <h5>Descripción</h5>
+          <p id="producto-descripcion" class="text-muted">Descripción del producto</p>
+        </div>
+        
+        <!-- Agregar al carrito -->
+        <div class="mb-4">
+          <div class="d-flex align-items-center mb-3">
+            <div class="me-3">
+              <label for="cantidad" class="form-label mb-0">Cantidad:</label>
+            </div>
+            <div class="input-group input-group-lg" style="max-width: 150px;">
+              <button id="btn-disminuir" class="btn btn-outline-secondary" type="button">-</button>
+              <input type="number" id="cantidad" class="form-control text-center" value="1" min="1">
+              <button id="btn-aumentar" class="btn btn-outline-secondary" type="button">+</button>
+            </div>
+            <div class="ms-3" id="stock-disponible">
+              <small class="text-muted">Disponibles: <span id="producto-stock">0</span></small>
+            </div>
+          </div>
+          
+          <button id="btn-agregar-carrito" class="btn btn-primary btn-lg w-100">
+            <i class="fas fa-cart-plus me-2"></i>Agregar al Carrito
+          </button>
+        </div>
+        
+        <!-- Especificaciones técnicas -->
+        <div class="mb-4">
+          <h5>Especificaciones técnicas</h5>
+          <div id="producto-especificaciones" class="small">
+            <div class="text-center py-3">
+              <div class="spinner-border spinner-border-sm text-primary" role="status">
+                <span class="visually-hidden">Cargando...</span>
+              </div>
+              <p class="mt-2 mb-0">Cargando especificaciones...</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Marca -->
+        <div class="mb-3">
+          <small class="text-muted">Marca: <a href="#" id="producto-marca">Marca</a></small>
+        </div>
+        
+        <!-- Compartir -->
+        <div>
+          <h5>Compartir</h5>
+          <div class="d-flex gap-2">
+            <a href="#" class="btn btn-outline-primary"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="btn btn-outline-info"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="btn btn-outline-success"><i class="fab fa-whatsapp"></i></a>
+            <a href="#" class="btn btn-outline-secondary" id="btn-copiar-enlace"><i class="fas fa-link"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Productos relacionados -->
+    <div class="mt-5 d-none" id="productos-relacionados-section">
+      <h3 class="mb-4">Productos Relacionados</h3>
+      <div class="row" id="productos-relacionados-container">
+        <!-- Se cargarán dinámicamente -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-dark text-light py-4 mt-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 mb-4 mb-md-0">
+          <h5>FERREMAS</h5>
+          <p class="text-muted">
+            Empresa chilena de productos de ferretería y construcción, 
+            establecida desde la década de los 80 con más de 7 sucursales 
+            en todo el país.
+          </p>
+        </div>
+        <div class="col-md-3 mb-4 mb-md-0">
+          <h5>Enlaces Rápidos</h5>
+          <ul class="list-unstyled">
+            <li><a href="/" class="text-muted">Inicio</a></li>
+            <li><a href="/productos" class="text-muted">Productos</a></li>
+            <li><a href="/ofertas" class="text-muted">Ofertas</a></li>
+            <li><a href="/contacto" class="text-muted">Contacto</a></li>
+          </ul>
+        </div>
+        <div class="col-md-3 mb-4 mb-md-0">
+          <h5>Categorías</h5>
+          <ul class="list-unstyled" id="footer-categorias">
+            <!-- Las categorías se cargarán dinámicamente aquí -->
+          </ul>
+        </div>
+        <div class="col-md-2">
+          <h5>Contacto</h5>
+          <ul class="list-unstyled">
+            <li class="mb-2">
+              <i class="fas fa-map-marker-alt me-2"></i>
+              <span class="text-muted">Santiago, Chile</span>
+            </li>
+            <li class="mb-2">
+              <i class="fas fa-phone me-2"></i>
+              <span class="text-muted">+56 2 2345 6789</span>
+            </li>
+            <li>
+              <i class="fas fa-envelope me-2"></i>
+              <span class="text-muted">contacto@ferremas.cl</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <hr class="my-4 bg-secondary">
+      <div class="row">
+        <div class="col text-center text-muted">
+          <p class="mb-0">© 2025 FERREMAS. Todos los derechos reservados.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="/js/auth.js"></script>
+  <script src="/js/ferremas-api-client.js"></script>
+  <script src="/js/producto-detalle.js"></script>
+</body>
+</html>
